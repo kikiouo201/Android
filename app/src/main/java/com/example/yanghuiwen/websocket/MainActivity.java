@@ -62,55 +62,85 @@ public class MainActivity extends AppCompatActivity {
 //                textView.setText(textView.getText()+"\n"+str);
 //            }
 //        });
-        piApi.place.favorite_place(3, "家裡", "123.123", "456.456", new Callback() {
+//        piApi.place.favorite_place(3, "家裡", "123.123", "456.456", new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//                TextView textView=findViewById(R.id.one);
+//                try{
+//                    JSONObject jsonObject=new JSONObject(str);
+//                    JSONObject jsonArray=(JSONObject) jsonObject.get("content");
+//
+//                    String text=jsonArray.get("name")+"\nA:"+jsonArray.get("content");
+//
+//
+//                    textView.setText(textView.getText()+"\n"+text);
+//                }catch (JSONException ex){
+//                    ex.printStackTrace();
+//                }
+//
+//
+//            }
+//        });
+//        piApi.place.favorite_place(1, "房間", "123.123", "456.456", new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//                TextView textView=findViewById(R.id.one);
+//                try{
+//                    JSONObject jsonObject=new JSONObject(str);
+//                    JSONArray jsonArray=(JSONArray) jsonObject.get("content");
+//
+//                    String text="";
+//                    for(int i=0;i<jsonArray.length();i++){
+//                        JSONObject QA=(JSONObject) jsonArray.get(i);
+//                        text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
+//                    }
+//                    textView.setText(textView.getText()+"\n"+text);
+//                }catch (JSONException ex){
+//                    ex.printStackTrace();
+//                }
+//
+//            }
+//        });
+        piApi.question.add_book_content(1,20, new Callback() {
             @Override
             public void onReceive(String str) {
-                TextView textView=findViewById(R.id.one);
-                try{
-                    JSONObject jsonObject=new JSONObject(str);
-                    JSONObject jsonArray=(JSONObject) jsonObject.get("content");
-
-                    String text=jsonArray.get("name")+"\nA:"+jsonArray.get("content");
-
-
-                    textView.setText(textView.getText()+"\n"+text);
-                }catch (JSONException ex){
-                    ex.printStackTrace();
-                }
-
 
             }
         });
+   //     piApi.question.add_qa(1, new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//                TextView textView=findViewById(R.id.one);
+//                try{
+//                    JSONObject jsonObject=new JSONObject(str);
+//                    JSONArray jsonArray=(JSONArray) jsonObject.get("content");
+//
+//                    String text="";
+//                    for(int i=0;i<jsonArray.length();i++){
+//                        JSONObject QA=(JSONObject) jsonArray.get(i);
+//                        text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
+//                    }
+//                    textView.setText(textView.getText()+"\n"+text);
+//                }catch (JSONException ex){
+//                    ex.printStackTrace();
+//                }
 
-        piApi.place.favorite_place(4, "家裡", "123.123", "456.456", new Callback() {
+//            }
+//        });
+
+        piApi.place.favorite_place(2, "房間", "123.123", "456.456", new Callback() {
             @Override
             public void onReceive(String str) {
                 TextView textView=findViewById(R.id.one);
                 try{
                     JSONObject jsonObject=new JSONObject(str);
-                    JSONObject jsonArray=(JSONObject) jsonObject.get("content");
+                    JSONArray jsonArray=(JSONArray) jsonObject.get("content");
 
-                    String text=jsonArray.get("name")+"\nA:"+jsonArray.get("content");
-
-                    textView.setText(textView.getText()+"\n"+text);
-                }catch (JSONException ex){
-                    ex.printStackTrace();
-                }
-
-            }
-        });
-
-        piApi.place.favorite_place(5, "房間", "123.123", "456.456", new Callback() {
-            @Override
-            public void onReceive(String str) {
-                TextView textView=findViewById(R.id.one);
-                try{
-                    JSONObject jsonObject=new JSONObject(str);
-                    JSONObject jsonArray=(JSONObject) jsonObject.get("content");
-
-                    String text=jsonArray.get("name")+"\nA:"+jsonArray.get("content");
-
-
+                    String text="";
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject QA=(JSONObject) jsonArray.get(i);
+                        text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
+                    }
                     textView.setText(textView.getText()+"\n"+text);
                 }catch (JSONException ex){
                     ex.printStackTrace();

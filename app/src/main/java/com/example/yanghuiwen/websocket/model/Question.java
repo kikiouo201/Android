@@ -21,8 +21,41 @@ public class Question {
 
     }
 
+    public void add_qa(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+
+            jsonObject.put("child_id",child_id);
+            data.sendToServer("add_qa",jsonObject);
+
+            callback.event="add_qa";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
 
 
+    public void add_book_content(int book_id,int qa_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+
+            jsonObject.put("book_id",book_id);
+            jsonObject.put("qa_id",qa_id);
+            data.sendToServer("add_book_content",jsonObject);
+
+            callback.event="add_book_content";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
 
 
 
