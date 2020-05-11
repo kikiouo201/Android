@@ -95,6 +95,50 @@ public class Question {
 
     }
 
+    public void alter_book(int book_id,String name,String category, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("table","Book");
+            jsonObject.put("id",book_id);
+            if(name !="")
+                jsonObject.put("name",name);
+            if(category!="")
+                jsonObject.put("category",category);
+
+            data.sendToServer("alter_book",jsonObject);
+
+            callback.event="alter_book";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void alter_book_content(int id,int book_id,int qa_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("table","Book_Content");
+            jsonObject.put("id",id);
+            if(book_id !=0)
+                jsonObject.put("book_id",book_id);
+            if(qa_id!=0)
+                jsonObject.put("qa_id",qa_id);
+
+            data.sendToServer("alter_book_content",jsonObject);
+
+            callback.event="alter_book_content";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
 
     public void add_book_content(int book_id,int qa_id, Callback callback){
 
