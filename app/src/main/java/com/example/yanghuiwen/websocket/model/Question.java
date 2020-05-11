@@ -57,6 +57,22 @@ public class Question {
 
     }
 
+    public void delete_book_content(int book_content_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+
+            jsonObject.put("id",book_content_id);
+            data.sendToServer("delete_book_content",jsonObject);
+
+            callback.event="delete_book_content";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
 
 
     public void show_past_question(int child_id, Callback callback){
@@ -68,6 +84,23 @@ public class Question {
             data.sendToServer("show_past_question",jsonObject);
 
             callback.event="show_past_question";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void delete_past_question(int book_content_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+
+            jsonObject.put("id",book_content_id);
+            data.sendToServer("delete_past_question",jsonObject);
+
+            callback.event="delete_past_question";
             data.workqueue.add(callback);
         } catch (JSONException e) {
 

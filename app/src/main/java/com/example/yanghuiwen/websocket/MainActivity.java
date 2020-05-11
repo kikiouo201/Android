@@ -34,27 +34,27 @@ public class MainActivity extends AppCompatActivity {
     public void connect(View view) {
         String str="";
 
-        piApi.question.show_past_question(1, new Callback() {
-            @Override
-            public void onReceive(String str) {
-
-                //裡面放你要做的事
-                TextView textView=findViewById(R.id.one);
-                try{
-                JSONObject jsonObject=new JSONObject(str);
-                JSONArray jsonArray=(JSONArray) jsonObject.get("content");
-
-                String text="";
-                for(int i=0;i<jsonArray.length();i++){
-                    JSONObject QA=(JSONObject) jsonArray.get(i);
-                    text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
-                }
-                textView.setText(text);
-                }catch (JSONException ex){
-                    ex.printStackTrace();
-                }
-            }
-        });
+//        piApi.question.show_past_question(1, new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//
+//                //裡面放你要做的事
+//                TextView textView=findViewById(R.id.one);
+//                try{
+//                JSONObject jsonObject=new JSONObject(str);
+//                JSONArray jsonArray=(JSONArray) jsonObject.get("content");
+//
+//                String text="";
+//                for(int i=0;i<jsonArray.length();i++){
+//                    JSONObject QA=(JSONObject) jsonArray.get(i);
+//                    text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
+//                }
+//                textView.setText(text);
+//                }catch (JSONException ex){
+//                    ex.printStackTrace();
+//                }
+//            }
+//        });
 //        piApi.translation.favorite_translation(2, 287, "呵呵呵", new Callback() {
 //            @Override
 //            void onReceive(String str) {
@@ -101,12 +101,27 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
-        piApi.question.add_book_content(1,20, new Callback() {
-            @Override
-            public void onReceive(String str) {
+//        piApi.question.add_book_content(1,20, new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//
+//            }
+//        });
+//        piApi.question.delete_book_content(9, new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//                TextView textView=findViewById(R.id.one);
+//                textView.setText(textView.getText()+"\n"+str);
+//            }
+//        });
 
-            }
-        });
+//        piApi.question.delete_past_question(21, new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//                TextView textView=findViewById(R.id.one);
+//                textView.setText(textView.getText()+"\n"+str);
+//            }
+//        });
    //     piApi.question.add_qa(1, new Callback() {
 //            @Override
 //            public void onReceive(String str) {
