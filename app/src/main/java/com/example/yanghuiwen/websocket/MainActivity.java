@@ -34,6 +34,43 @@ public class MainActivity extends AppCompatActivity {
     public void connect(View view) {
         String str="";
 
+//        piApi.question.add_book(1, "呵呵知識本", "知識", new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//                TextView textView=findViewById(R.id.one);
+//                textView.setText(textView.getText()+"\n"+str);
+//            }
+//        });
+
+
+
+//        piApi.question.delete_book(3, new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//                TextView textView=findViewById(R.id.one);
+//                textView.setText(textView.getText()+"\n"+str);
+//            }
+//        });
+//        piApi.question.show_book(1, new Callback() {
+//            @Override
+//            public void onReceive(String str) {
+//                TextView textView=findViewById(R.id.one);
+//                try{
+//                    JSONObject jsonObject=new JSONObject(str);
+//                    JSONArray jsonArray=(JSONArray) jsonObject.get("content");
+//
+//                    String text="";
+//                    for(int i=0;i<jsonArray.length();i++){
+//                        JSONObject book=(JSONObject) jsonArray.get(i);
+//                        text+="\n本子名:"+book.get("name")+"\n類別:"+book.get("category");
+//                    }
+//                    textView.setText(textView.getText()+"\n"+text);
+//                }catch (JSONException ex){
+//                    ex.printStackTrace();
+//                }
+//            }
+//        });
+
 //        piApi.question.show_past_question(1, new Callback() {
 //            @Override
 //            public void onReceive(String str) {
@@ -55,59 +92,22 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-//        piApi.translation.favorite_translation(2, 287, "呵呵呵", new Callback() {
+
+//        piApi.question.delete_past_question(20, new Callback() {
 //            @Override
-//            void onReceive(String str) {
+//            public void onReceive(String str) {
 //                TextView textView=findViewById(R.id.one);
 //                textView.setText(textView.getText()+"\n"+str);
 //            }
 //        });
-//        piApi.place.favorite_place(3, "家裡", "123.123", "456.456", new Callback() {
-//            @Override
-//            public void onReceive(String str) {
-//                TextView textView=findViewById(R.id.one);
-//                try{
-//                    JSONObject jsonObject=new JSONObject(str);
-//                    JSONObject jsonArray=(JSONObject) jsonObject.get("content");
-//
-//                    String text=jsonArray.get("name")+"\nA:"+jsonArray.get("content");
-//
-//
-//                    textView.setText(textView.getText()+"\n"+text);
-//                }catch (JSONException ex){
-//                    ex.printStackTrace();
-//                }
-//
-//
-//            }
-//        });
-//        piApi.place.favorite_place(1, "房間", "123.123", "456.456", new Callback() {
-//            @Override
-//            public void onReceive(String str) {
-//                TextView textView=findViewById(R.id.one);
-//                try{
-//                    JSONObject jsonObject=new JSONObject(str);
-//                    JSONArray jsonArray=(JSONArray) jsonObject.get("content");
-//
-//                    String text="";
-//                    for(int i=0;i<jsonArray.length();i++){
-//                        JSONObject QA=(JSONObject) jsonArray.get(i);
-//                        text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
-//                    }
-//                    textView.setText(textView.getText()+"\n"+text);
-//                }catch (JSONException ex){
-//                    ex.printStackTrace();
-//                }
-//
-//            }
-//        });
+
 //        piApi.question.add_book_content(1,20, new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //
 //            }
 //        });
-//        piApi.question.delete_book_content(9, new Callback() {
+//        piApi.question.delete_book_content(7, new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //                TextView textView=findViewById(R.id.one);
@@ -115,14 +115,8 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        piApi.question.delete_past_question(21, new Callback() {
-//            @Override
-//            public void onReceive(String str) {
-//                TextView textView=findViewById(R.id.one);
-//                textView.setText(textView.getText()+"\n"+str);
-//            }
-//        });
-   //     piApi.question.add_qa(1, new Callback() {
+
+//        piApi.question.add_qa(1,"蘋果是什麼?","一種甜味可食用果實，有大量的維他命C，俗語說：「一天一蘋果，醫生遠離我」。","","知識", new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //                TextView textView=findViewById(R.id.one);
@@ -139,30 +133,11 @@ public class MainActivity extends AppCompatActivity {
 //                }catch (JSONException ex){
 //                    ex.printStackTrace();
 //                }
-
+//
 //            }
 //        });
 
-        piApi.place.favorite_place(2, "房間", "123.123", "456.456", new Callback() {
-            @Override
-            public void onReceive(String str) {
-                TextView textView=findViewById(R.id.one);
-                try{
-                    JSONObject jsonObject=new JSONObject(str);
-                    JSONArray jsonArray=(JSONArray) jsonObject.get("content");
 
-                    String text="";
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject QA=(JSONObject) jsonArray.get(i);
-                        text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
-                    }
-                    textView.setText(textView.getText()+"\n"+text);
-                }catch (JSONException ex){
-                    ex.printStackTrace();
-                }
-
-            }
-        });
 
     }
 }

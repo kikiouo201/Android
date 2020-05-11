@@ -21,12 +21,69 @@ public class Question {
 
     }
 
-    public void add_qa(int child_id, Callback callback){
+    public void add_book(int child_id,String name,String category, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+            jsonObject.put("name",name);
+            jsonObject.put("category",category);
+            data.sendToServer("add_book",jsonObject);
+
+            callback.event="add_book";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void show_book(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+            data.sendToServer("show_book",jsonObject);
+
+            callback.event="show_book";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    public void delete_book(int book_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("id",book_id);
+            data.sendToServer("delete_book",jsonObject);
+
+            callback.event="delete_book";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void add_qa(int child_id,String question_text,String answer,String question_url,String category, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
         try {
 
             jsonObject.put("child_id",child_id);
+            jsonObject.put("question_text",question_text);
+            jsonObject.put("answer",answer);
+            jsonObject.put("question_url",question_url);
+            jsonObject.put("category",category);
+
             data.sendToServer("add_qa",jsonObject);
 
             callback.event="add_qa";
@@ -109,36 +166,7 @@ public class Question {
 
     }
 
-    public void favorite_question(int child_id,int question_id,Callback callback){
 
-        JSONObject jsonObject=new JSONObject();
-        try {
 
-            jsonObject.put("child_id",child_id);
-            jsonObject.put("question_id",question_id);
-            data.sendToServer("favorite_question",jsonObject);
 
-            callback.event="favorite_question";
-            data.workqueue.add(callback);
-        } catch (JSONException e) {
-
-            e.printStackTrace();
-        }
-    }
-
-    public void delete_question(int child_id,int question_id,Callback callback){
-        JSONObject jsonObject=new JSONObject();
-        try {
-
-            jsonObject.put("child_id",child_id);
-            jsonObject.put("question_id",question_id);
-            data.sendToServer("delete_question",jsonObject);
-
-            callback.event="delete_question";
-            data.workqueue.add(callback);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
 }
