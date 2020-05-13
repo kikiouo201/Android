@@ -139,6 +139,22 @@ public class Question {
 
     }
 
+    public void show_book_content(int book_content_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+
+            jsonObject.put("id",book_content_id);
+            data.sendToServer("show_book_content",jsonObject);
+
+            callback.event="show_book_content";
+            data.workqueue.add(callback);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
 
     public void add_book_content(int book_id,int qa_id, Callback callback){
 
