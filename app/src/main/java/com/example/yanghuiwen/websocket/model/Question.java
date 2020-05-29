@@ -99,7 +99,6 @@ public class Question {
 
         JSONObject jsonObject=new JSONObject();
         try {
-            jsonObject.put("table","Book");
             jsonObject.put("id",book_id);
             if(name !="")
                 jsonObject.put("name",name);
@@ -111,7 +110,6 @@ public class Question {
             callback.event="alter_book";
             data.workqueue.add(callback);
         } catch (JSONException e) {
-
             e.printStackTrace();
         }
 
@@ -121,7 +119,6 @@ public class Question {
 
         JSONObject jsonObject=new JSONObject();
         try {
-            jsonObject.put("table","Book_Content");
             jsonObject.put("id",id);
             if(book_id !=0)
                 jsonObject.put("book_id",book_id);
@@ -139,12 +136,12 @@ public class Question {
 
     }
 
-    public void show_book_content(int book_content_id, Callback callback){
+    public void show_book_content(int book_id, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
         try {
 
-            jsonObject.put("id",book_content_id);
+            jsonObject.put("id",book_id);
             data.sendToServer("show_book_content",jsonObject);
 
             callback.event="show_book_content";

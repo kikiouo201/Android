@@ -26,20 +26,30 @@ public class Data {
 
     private static WebSocketClient webSocketClient;
 
-    public Data(){
+    private Data(){
         super();
-        connetToServer();
-
+        try {
+            connetToServer();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         workqueue=new ArrayList<Callback>();
+    }
 
-
+    private static Data instance;
+    public static Data getInstance() {
+        if (instance != null) return instance;
+        instance = new Data();
+        return instance;
     }
 
 
-    private void connetToServer(){
+    private void connetToServer() throws InterruptedException {
 
         try {
-            webSocketClient = new WebSocketClient(new URI("ws://10.0.2.2:2000"), new Draft_6455() {},null,100000) {
+            //ws://10.0.2.2:2000
+            //ws://growup.mcu.yokikiyo.space
+            webSocketClient = new WebSocketClient(new URI("ws://growup.mcu.yokikiyo.space"), new Draft_6455() {},null,100000) {
                 @Override
                 public void onOpen(ServerHandshake handshakedata) {
                     Log.i("view","connetToServer");
@@ -49,7 +59,7 @@ public class Data {
                     try{
                         JSONObject jsonObject=new JSONObject(message);
                         String event=jsonObject.get("event").toString();
-
+                        Log.i("kiki","event="+event);
                         for (int i=0;i<workqueue.size();i++){
                             Callback work=workqueue.get(i);
 
@@ -81,10 +91,10 @@ public class Data {
                     ex.printStackTrace();
                 }
             };
+            webSocketClient.connectBlocking();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        webSocketClient.connect();
     }
 
     public void allmodel(Place place,Question question,Translation translation){

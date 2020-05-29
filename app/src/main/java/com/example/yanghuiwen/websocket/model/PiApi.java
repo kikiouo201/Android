@@ -12,7 +12,7 @@ public class PiApi {
 
     public PiApi(){
         super();
-        data=new Data();
+        data=Data.getInstance();
         place=new Place(data);
         question=new Question(data);
         translation=new Translation(data);
