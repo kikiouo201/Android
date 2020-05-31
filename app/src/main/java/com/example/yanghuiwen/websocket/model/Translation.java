@@ -1,22 +1,19 @@
 package com.example.yanghuiwen.websocket.model;
 
-import com.example.yanghuiwen.websocket.model.Callback;
-import com.example.yanghuiwen.websocket.model.Data;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Translation  {
 
-    Data data;
+    WSClient WSClient;
     JSONObject answer;
     int onoff;
 
     //資料儲存 jsonp
 
-    public Translation(Data data){
+    public Translation(WSClient WSClient){
         super();
-        this.data=data;
+        this.WSClient = WSClient;
         answer=new JSONObject();
         onoff=0;
     }
@@ -29,10 +26,9 @@ public class Translation  {
             jsonObject.put("child_id",child_id);
             jsonObject.put("translation_id",translation_id);
             jsonObject.put("answer",answers);
-            data.sendToServer("favorite_translation",jsonObject);
+            WSClient.sendToServer("favorite_translation",jsonObject,callback);
 
-            callback.event="favorite_translation";
-            data.workqueue.add(callback);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -47,10 +43,8 @@ public class Translation  {
         try {
 
             jsonObject.put("child_id",child_id);
-            data.sendToServer("show_translation",jsonObject);
+            WSClient.sendToServer("show_translation",jsonObject,callback);
 
-            callback.event="show_translation";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -63,10 +57,8 @@ public class Translation  {
 
             jsonObject.put("child_id",child_id);
             jsonObject.put("translation_id",translation_id);
-            data.sendToServer("delete_translation",jsonObject);
+            WSClient.sendToServer("delete_translation",jsonObject,callback);
 
-            callback.event="delete_translation";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
             e.printStackTrace();
         }

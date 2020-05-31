@@ -1,20 +1,17 @@
 package com.example.yanghuiwen.websocket.model;
 
-import com.example.yanghuiwen.websocket.model.Callback;
-import com.example.yanghuiwen.websocket.model.Data;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Place {
 
-    Data data;
+    WSClient WSClient;
     JSONObject answer;
     int onoff;
 
-    public Place(Data data){
+    public Place(WSClient WSClient){
         super();
-        this.data=data;
+        this.WSClient = WSClient;
         answer=new JSONObject();
         onoff=0;
     }
@@ -28,10 +25,8 @@ public class Place {
             jsonObject.put("title",title);
             jsonObject.put("lat",lat);
             jsonObject.put("lon",lon);
-            data.sendToServer("favorite_place",jsonObject);
+            WSClient.sendToServer("favorite_place",jsonObject,callback);
 
-            callback.event="favorite_place";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -49,10 +44,8 @@ public class Place {
             jsonObject.put("title",title);
             jsonObject.put("lat",lat);
             jsonObject.put("lon",lon);
-            data.sendToServer("falter_place",jsonObject);
+            WSClient.sendToServer("falter_place",jsonObject,callback);
 
-            callback.event="falter_place";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -66,10 +59,8 @@ public class Place {
         try {
 
             jsonObject.put("child_id",child_id);
-            data.sendToServer("show_place",jsonObject);
+            WSClient.sendToServer("show_place",jsonObject,callback);
 
-            callback.event="show_place";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -84,10 +75,8 @@ public class Place {
 
             jsonObject.put("child_id",child_id);
             jsonObject.put("place_id",place_id);
-            data.sendToServer("delete_place",jsonObject);
+            WSClient.sendToServer("delete_place",jsonObject,callback);
 
-            callback.event="delete_place";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();

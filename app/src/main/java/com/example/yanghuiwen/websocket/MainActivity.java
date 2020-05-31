@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.yanghuiwen.websocket.model.Callback;
-import com.example.yanghuiwen.websocket.model.Data;
+import com.example.yanghuiwen.websocket.model.WSClient;
 import com.example.yanghuiwen.websocket.model.PiApi;
 import com.example.yanghuiwen.websocket.model.Translation;
 
@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity {
-    Data socket;
+    WSClient socket;
     Translation translation;
 
     PiApi piApi;
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        piApi=new PiApi();
+        piApi=PiApi.getInstance();
 
 
     }
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public void connect(View view) {
         String str="";
 
-//        piApi.question.add_book(1, "呵呵知識本", "知識", new Callback() {
+//        piApi.question.add_book(1, "123知識本", "知識", new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //                TextView textView=findViewById(R.id.one);
@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-        piApi.question.show_book_content(2, new Callback() {
+
+        piApi.question.show_book_content(1, new Callback() {
             @Override
             public void onReceive(String str) {
                 TextView textView=findViewById(R.id.one);
@@ -83,36 +84,37 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject QA=(JSONObject) jsonArray.get(i);
                         text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
                     }
-                    textView.setText(text);
+                    textView.setText(textView.getText()+"\n"+text);
                 }catch (JSONException ex){
                     ex.printStackTrace();
                 }
             }
         });
 
-       // piApi.question.show_past_question(1, new Callback() {
+//        piApi.question.show_past_question(1, new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //
 //                //裡面放你要做的事
 //                TextView textView=findViewById(R.id.one);
 //                try{
-//                JSONObject jsonObject=new JSONObject(str);
-//                JSONArray jsonArray=(JSONArray) jsonObject.get("content");
+//                    JSONObject jsonObject=new JSONObject(str);
+//                    JSONArray jsonArray=(JSONArray) jsonObject.get("content");
 //
-//                String text="";
-//                for(int i=0;i<jsonArray.length();i++){
-//                    JSONObject QA=(JSONObject) jsonArray.get(i);
-//                    text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
-//                }
-//                textView.setText(text);
+//                    String text="";
+//                    for(int i=0;i<jsonArray.length();i++){
+//                        JSONObject QA=(JSONObject) jsonArray.get(i);
+//                        text+="\nQ:"+QA.get("question_text")+"\nA:"+QA.get("answer");
+//                    }
+//
+//                    textView.setText(textView.getText()+"\n"+text);
 //                }catch (JSONException ex){
 //                    ex.printStackTrace();
 //                }
 //            }
 //        });
 
-//        piApi.question.delete_past_question(20, new Callback() {
+//        piApi.question.delete_past_question(23, new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //                TextView textView=findViewById(R.id.one);
@@ -120,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        piApi.question.add_book_content(1,19, new Callback() {
+//        piApi.question.add_book_content(1,17, new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //
 //            }
 //        });
-//        piApi.question.delete_book_content(7, new Callback() {
+//        piApi.question.delete_book_content(12, new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //                TextView textView=findViewById(R.id.one);
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-//        piApi.question.add_qa(1,"蘋果是什麼?","一種甜味可食用果實，有大量的維他命C，俗語說：「一天一蘋果，醫生遠離我」。","","知識", new Callback() {
+//        piApi.question.add_qa(1,"奶吃吃是什麼?","一種甜味可食用果實，有大量的維他命C，俗語說：「一天一蘋果，醫生遠離我」。","","知識", new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //                TextView textView=findViewById(R.id.one);
@@ -157,14 +159,14 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-//        piApi.question.alter_book(1,"yo知識本","", new Callback() {
+//        piApi.question.alter_book(3,"123yo知識本","", new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //
 //            }
 //        });
 //
-//        piApi.question.alter_book_content(6,0, 22, new Callback() {
+//        piApi.question.alter_book_content(13,0, 22, new Callback() {
 //            @Override
 //            public void onReceive(String str) {
 //

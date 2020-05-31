@@ -1,21 +1,18 @@
 package com.example.yanghuiwen.websocket.model;
 
-import com.example.yanghuiwen.websocket.model.Callback;
-import com.example.yanghuiwen.websocket.model.Data;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Question {
 
-    Data data;
+    WSClient WSClient;
     JSONObject answer;
     int onoff;
 
 
-    public Question(Data data){
+    public Question(WSClient WSClient){
         super();
-        this.data=data;
+        this.WSClient = WSClient;
         answer=new JSONObject();
         onoff=0;
 
@@ -28,10 +25,8 @@ public class Question {
             jsonObject.put("child_id",child_id);
             jsonObject.put("name",name);
             jsonObject.put("category",category);
-            data.sendToServer("add_book",jsonObject);
+            WSClient.sendToServer("add_book",jsonObject,callback);
 
-            callback.event="add_book";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -44,10 +39,8 @@ public class Question {
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("child_id",child_id);
-            data.sendToServer("show_book",jsonObject);
+            WSClient.sendToServer("show_book",jsonObject,callback);
 
-            callback.event="show_book";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -62,10 +55,8 @@ public class Question {
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("id",book_id);
-            data.sendToServer("delete_book",jsonObject);
+            WSClient.sendToServer("delete_book",jsonObject,callback);
 
-            callback.event="delete_book";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -84,10 +75,8 @@ public class Question {
             jsonObject.put("question_url",question_url);
             jsonObject.put("category",category);
 
-            data.sendToServer("add_qa",jsonObject);
+            WSClient.sendToServer("add_qa",jsonObject,callback);
 
-            callback.event="add_qa";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -105,10 +94,8 @@ public class Question {
             if(category!="")
                 jsonObject.put("category",category);
 
-            data.sendToServer("alter_book",jsonObject);
+            WSClient.sendToServer("alter_book",jsonObject,callback);
 
-            callback.event="alter_book";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -125,10 +112,8 @@ public class Question {
             if(qa_id!=0)
                 jsonObject.put("qa_id",qa_id);
 
-            data.sendToServer("alter_book_content",jsonObject);
+            WSClient.sendToServer("alter_book_content",jsonObject,callback);
 
-            callback.event="alter_book_content";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -142,10 +127,8 @@ public class Question {
         try {
 
             jsonObject.put("id",book_id);
-            data.sendToServer("show_book_content",jsonObject);
+            WSClient.sendToServer("show_book_content",jsonObject,callback);
 
-            callback.event="show_book_content";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -160,10 +143,8 @@ public class Question {
 
             jsonObject.put("book_id",book_id);
             jsonObject.put("qa_id",qa_id);
-            data.sendToServer("add_book_content",jsonObject);
+            WSClient.sendToServer("add_book_content",jsonObject,callback);
 
-            callback.event="add_book_content";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -177,10 +158,8 @@ public class Question {
         try {
 
             jsonObject.put("id",book_content_id);
-            data.sendToServer("delete_book_content",jsonObject);
+            WSClient.sendToServer("delete_book_content",jsonObject,callback);
 
-            callback.event="delete_book_content";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -195,10 +174,8 @@ public class Question {
         try {
 
             jsonObject.put("child_id",child_id);
-            data.sendToServer("show_past_question",jsonObject);
+            WSClient.sendToServer("show_past_question",jsonObject,callback);
 
-            callback.event="show_past_question";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();
@@ -212,10 +189,8 @@ public class Question {
         try {
 
             jsonObject.put("id",book_content_id);
-            data.sendToServer("delete_past_question",jsonObject);
+            WSClient.sendToServer("delete_past_question",jsonObject,callback);
 
-            callback.event="delete_past_question";
-            data.workqueue.add(callback);
         } catch (JSONException e) {
 
             e.printStackTrace();

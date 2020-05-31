@@ -5,18 +5,25 @@ public class PiApi {
 
     //child_id
 
-   public Data data;
+   public WSClient WSClient;
     public Place place;
     public Question question;
     public Translation translation;
 
-    public PiApi(){
+    private PiApi(){
         super();
-        data=Data.getInstance();
-        place=new Place(data);
-        question=new Question(data);
-        translation=new Translation(data);
-        data.allmodel(place,question,translation);
+        WSClient = new WSClient();
+        place=new Place(WSClient);
+        question=new Question(WSClient);
+        translation=new Translation(WSClient);
+//        WSClient.allmodel(place,question,translation);
+    }
+
+    private static PiApi instance;
+    public static PiApi getInstance() {
+        if (instance != null) return instance;
+        instance = new PiApi();
+        return instance;
     }
 
 }

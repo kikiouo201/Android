@@ -2,8 +2,6 @@ package com.example.yanghuiwen.websocket.model;
 
 import android.util.Log;
 
-import com.example.yanghuiwen.websocket.model.Callback;
-
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
@@ -15,18 +13,18 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 
-public class Data {
+public class WSClient {
 
     JSONObject answer=new JSONObject();
     int onoff=0;
-    Place place;
-    Question question;
-    Translation translation;
+//    Place place;
+//    Question question;
+//    Translation translation;
     ArrayList<Callback> workqueue;
 
-    private static WebSocketClient webSocketClient;
+    private WebSocketClient webSocketClient;
 
-    private Data(){
+    public WSClient(){
         super();
         try {
             connetToServer();
@@ -34,13 +32,6 @@ public class Data {
             e.printStackTrace();
         }
         workqueue=new ArrayList<Callback>();
-    }
-
-    private static Data instance;
-    public static Data getInstance() {
-        if (instance != null) return instance;
-        instance = new Data();
-        return instance;
     }
 
 
@@ -97,13 +88,15 @@ public class Data {
         }
     }
 
-    public void allmodel(Place place,Question question,Translation translation){
-     this.place=place;
-     this.question=question;
-     this.translation=translation;
-    }
+//    public void allmodel(Place place,Question question,Translation translation){
+//     this.place=place;
+//     this.question=question;
+//     this.translation=translation;
+//    }
 
-    public void sendToServer(String event,JSONObject content){
+
+
+    public void sendToServer(String event,JSONObject content,Callback callback){
 
 
         try {
@@ -112,6 +105,8 @@ public class Data {
             jsonObject.put("content",content);
             String str=jsonObject.toString();
             webSocketClient.send(str);
+            callback.event=event;
+            workqueue.add(callback);
 
         } catch (JSONException e) {
 
