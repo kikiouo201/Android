@@ -18,6 +18,43 @@ public class Question {
 
     }
 
+    public void alter_parent(int parent_id, String name, String account, String password, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("id",parent_id);
+            if(!name.equals(""))
+                jsonObject.put("name",name);
+            if(!account.equals(""))
+                jsonObject.put("account",account);
+            if(!password.equals(""))
+            jsonObject.put("password",password);
+
+            WSClient.sendToServer("alter_parent",jsonObject,callback);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void add_parent( String name, String account, String password, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("name",name);
+            jsonObject.put("account",account);
+            jsonObject.put("password",password);
+
+            WSClient.sendToServer("add_parent",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
     public void alter_child(int child_id, String name, String birthday, String photo, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
@@ -87,6 +124,36 @@ public class Question {
         }
 
     }
+
+    public void show_quiz_content(int quiz_record_id_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("quiz_record_id",quiz_record_id_id);
+            WSClient.sendToServer("show_quiz_content",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void show_quiz_record(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+            WSClient.sendToServer("show_quiz_record",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+
 
 
     public void add_book(int child_id,String name,String category, Callback callback){
