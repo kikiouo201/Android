@@ -18,6 +18,22 @@ public class Question {
 
     }
 
+    public void show_child(int parent_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("parent_id",parent_id);
+
+            WSClient.sendToServer("show_child",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+
     public void add_book(int child_id,String name,String category, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
