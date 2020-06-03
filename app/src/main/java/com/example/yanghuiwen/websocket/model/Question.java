@@ -18,6 +18,26 @@ public class Question {
 
     }
 
+    public void alter_child(int child_id, String name, String birthday, String photo, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("id",child_id);
+            if(!name.equals(""))
+                jsonObject.put("name",name);
+            if(!birthday.equals(""))
+                jsonObject.put("birthday",birthday);
+            if(!photo.equals(""))
+                jsonObject.put("photo",photo);
+
+            WSClient.sendToServer("alter_child",jsonObject,callback);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void delete_child(int child_id, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
