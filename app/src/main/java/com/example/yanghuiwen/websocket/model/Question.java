@@ -18,6 +18,41 @@ public class Question {
 
     }
 
+    public void delete_child(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+
+            WSClient.sendToServer("delete_child",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public void add_child(int parent_id, String name, String birthday, String photo, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("parent_id",parent_id);
+            jsonObject.put("name",name);
+            jsonObject.put("birthday",birthday);
+            jsonObject.put("photo",photo);
+
+            WSClient.sendToServer("add_child",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+
     public void show_child(int parent_id, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
