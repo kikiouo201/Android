@@ -18,6 +18,22 @@ public class Question {
 
     }
 
+    public void sign_in_parent(String account, String password, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+
+                jsonObject.put("account",account);
+                jsonObject.put("password",password);
+
+            WSClient.sendToServer("sign_in_parent",jsonObject,callback);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void alter_parent(int parent_id, String name, String account, String password, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
@@ -28,7 +44,7 @@ public class Question {
             if(!account.equals(""))
                 jsonObject.put("account",account);
             if(!password.equals(""))
-            jsonObject.put("password",password);
+                jsonObject.put("password",password);
 
             WSClient.sendToServer("alter_parent",jsonObject,callback);
 
@@ -227,9 +243,9 @@ public class Question {
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("id",book_id);
-            if(name !="")
+            if(!name.equals(""))
                 jsonObject.put("name",name);
-            if(category!="")
+            if(!category.equals(""))
                 jsonObject.put("category",category);
 
             WSClient.sendToServer("alter_book",jsonObject,callback);
