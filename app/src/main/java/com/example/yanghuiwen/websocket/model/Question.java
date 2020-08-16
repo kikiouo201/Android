@@ -169,8 +169,49 @@ public class Question {
 
     }
 
+    public void add_picture_book(int child_id,String name,String image,String introduction, Callback callback){
 
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+            jsonObject.put("name",name);
+            jsonObject.put("image",image);
+            jsonObject.put("introduction",introduction);
+            WSClient.sendToServer("add_picture_book",jsonObject,callback);
 
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+    public void show_picture_book(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+            WSClient.sendToServer("show_picture_book",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void show_level(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+            WSClient.sendToServer("show_level",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
 
     public void add_book(int child_id,String name,String category, Callback callback){
 
