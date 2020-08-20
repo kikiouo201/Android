@@ -141,6 +141,36 @@ public class Question {
 
     }
 
+    public void show_child_good_baby_total_value(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+
+            WSClient.sendToServer("show_child_good_baby_total_value",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void show_child_good_baby_day_value(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+
+            WSClient.sendToServer("show_child_good_baby_day_value",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
     public void show_quiz_content(int quiz_record_id_id, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
