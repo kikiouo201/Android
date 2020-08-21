@@ -1,7 +1,20 @@
 package com.example.yanghuiwen.websocket.model;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.util.Base64;
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
 
 public class Question {
 
@@ -140,6 +153,20 @@ public class Question {
         }
 
     }
+    public void show_child_position(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+
+            WSClient.sendToServer("show_child_position",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
 
     public void show_child_good_baby_total_value(int child_id, Callback callback){
 
@@ -199,14 +226,17 @@ public class Question {
 
     }
 
-    public void add_picture_book(int child_id,String name,String image,String introduction, Callback callback){
+    public void add_picture_book(int child_id, String name, Drawable image, String introduction, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
         try {
+            BitmapDrawable bd = (BitmapDrawable) image;
+            Bitmap bm = bd.getBitmap();
+            String base64Img=encodeImage(bm);
             jsonObject.put("child_id",child_id);
-            jsonObject.put("name",name);
-            jsonObject.put("image",image);
-            jsonObject.put("introduction",introduction);
+            jsonObject.put("book_name",name);
+            jsonObject.put("image",base64Img);
+            jsonObject.put("book_introduction",introduction);
             WSClient.sendToServer("add_picture_book",jsonObject,callback);
 
         } catch (JSONException e) {
@@ -215,6 +245,19 @@ public class Question {
         }
 
     }
+
+    public String encodeImage(Bitmap bitmap){
+
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        bitmap.compress(Bitmap.CompressFormat.PNG, 40, baos); //引數如果為100那麼就不壓縮
+        byte[] bytes = baos.toByteArray();
+        String strbm = Base64.encodeToString(bytes,Base64.DEFAULT);
+        Log.i("kiki","strbm"+strbm);
+        return  strbm;
+    }
+
     public void show_picture_book(int child_id, Callback callback){
 
         JSONObject jsonObject=new JSONObject();

@@ -20,11 +20,19 @@
     <TextView
         android:id="@+id/one"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="500px"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image87"
+        android:layout_width="match_parent"
+        android:layout_height="500px"
+        android:src="@drawable/dog_05"
+        app:layout_constraintBottom_toTopOf="@+id/button1">
+    </ImageView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
