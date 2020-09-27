@@ -183,6 +183,21 @@ public class Question {
 
     }
 
+    public void show_child_good_baby_value(int child_id, Callback callback){
+
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("child_id",child_id);
+
+            WSClient.sendToServer("show_child_good_baby_value",jsonObject,callback);
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
     public void show_child_good_baby_day_value(int child_id, Callback callback){
 
         JSONObject jsonObject=new JSONObject();
